@@ -11,14 +11,14 @@ app.get('/notes', (req, res)=>{
     res.sendFile(path.join(__dirname, 'public/notes.html'))
 });
 
+
+
 app.get('/api/notes', (req, res) => res.json(noteData));
 
-// GET * should return the index.html file
-// app.get('*', (req, res) =>
-//   res.send(
-//     `Make a GET request using Insomnia to <a href="http://localhost:${PORT}/api/terms">http://localhost:${PORT}/api/terms</a>`
-//   )
-// );
+// GET * should returns index.html file
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public/index.html')
+  ));
 
 app.listen(PORT, () =>
   console.log(`Example app listening at http://localhost:${PORT}`)

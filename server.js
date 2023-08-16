@@ -66,12 +66,3 @@ app.listen(PORT, () =>
 );
 
 
-
-
-
-// to do
-// deploy the entire application to Heroku
-// readme
-// comments
-
-// https://github.com/uuidjs/uuid#uuidv4options-buffer-offset

@@ -47,7 +47,7 @@ app.post('/api/notes',(req,res)=>{
         `New note written to file`
       )
 );
-  const response = {
+  let response = {
     status: 'success',
     body: newNote,
   };
@@ -55,6 +55,32 @@ app.post('/api/notes',(req,res)=>{
   console.log(response);
   res.json('worked')
 }})
+
+// Delete note based on note ID 
+app.delete('/api/notes/:id',(req,res)=>{
+  for (let i = 0; i < noteData.length; i++) {
+      if (noteData[i].id === req.params.id) {
+          noteData.splice(i, 1);
+          break;
+      }
+    }
+    const newNote = JSON.stringify(noteData);
+    fs.writeFile(`./db/db.json`, newNote, (err) =>
+    err
+      ? console.error(err)
+      : console.log(
+          `Note deleted from file`
+        )
+    );
+    let response = {
+      status: 'deleted',
+      body: newNote,
+    };
+  
+    console.log(response);
+    res.json("worked");
+})
+
 
 // Fallback route for when user attempts to visit routes dont exist
 app.get('*', (req, res) =>
